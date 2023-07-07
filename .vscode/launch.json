@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            // runs all tests
+            "name": "Run All Tests",
+            "command": "dotnet test",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/storageSDKsTestBed.Tests",
+            "type": "node-terminal",
+            "env": { 
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            } 
+        },
+        {
+            // used to the attach the debugger to the running test process
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        }
+    ]
+}
+

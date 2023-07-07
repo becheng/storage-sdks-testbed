@@ -1,2 +1,26 @@
 # Storage SDKs Test Bed
 A dotnet test (xunit) project containing Azure storage account and  AWS S3 bucket test cases using the respected dotnet SDKs.  
+
+## Prerequistes
+1. Create an Azure app registration with a client secret (to run test locally).
+2. Create an Azure Storage account in your home tenant with three separate containers and assign the above app with a 'Storage Blob Data Contributor' role to the account.
+3. Create another Azure app registration with multi-tenancy (to test cross tenant access).
+4. Access to a separate Azure tenant with a storage account with one container provisioned.
+      
+   a) To establish cross tenant access, issue the request using the following link given the multi-tenant app registrion created above and the other tenant's id.
+       
+    ```
+    https://login.microsoftonline.com/<your-other-azure-tenentId>/oauth2/authorize?client_id=<your-multiTenant-clientId>&response_type=code&redirect_uri=<your-replyUrl, e.g. localhost>`
+    ```
+
+    b) Once consent is provided and service principal created on the other Azure tenant, assign a RBAC role of 'Storage Blob Data Contributor' to the target storage account. 
+
+5. Access to AWS tenant with an existing S3 Bucket and setup an `accessKeyId` and `accessKeySecret`.
+
+6. Update the `appsettings.Tests.json` with the values above.
+    - For `AwsS3Test` > `awsRegion` provide an  official S3 region system names, e.g. `ca-central-1`.  
+
+## How to include as a submodule to another dotnet solution
+TODO
+
+
