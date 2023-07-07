@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            // build test project only, alternativily you can use the Ctrl+Shift+B vscode shortcut 
+            // build test project only, alternatively you can use the Ctrl+Shift+B vscode shortcut 
             "label": "build-tests",
             "command": "dotnet",
             "type": "process",
