@@ -4,6 +4,9 @@ A dotnet test (xunit) project containing Azure storage account and  AWS S3 bucke
 ## Prerequistes
 1. Create an Azure app registration with a client secret (to run test locally).
 2. Create an Azure Storage account in your home tenant with three separate containers and assign the above app with a 'Storage Blob Data Contributor' role to the account.
+
+   a) Create a Shared access token for one of the containers with Read, Add, Write, Delete and List permissions.
+    
 3. Create another Azure app registration with multi-tenancy (to test cross tenant access).
 4. Access to a separate Azure tenant with a storage account with one container provisioned.
       
