@@ -24,6 +24,56 @@ A dotnet test (xunit) project containing Azure storage account and  AWS S3 bucke
     - For `AwsS3Test` > `awsRegion` provide an  official S3 region system names, e.g. `ca-central-1`.  
 
 ## How to include as a submodule to another dotnet solution
-TODO
 
+1. Recommended pathing of the target solution (example):
+
+    ```
+    / storageAdapterClient
+        storageAdapterClient.sln
+        /src
+            storageAdapterClient.cs
+            storageAdapterClient.csproj
+        /test
+            /storageAdapterClient.Tests
+                storageAdapterClient.Tests.csproj
+                aStorageAdapterClientTest.cs
+                ...
+            /storage-sdks-testbed <-- added as a submodule!
+                storageSDKsTestBed.sln
+                ...
+                ...
+                /storageSDKsTestBed.Tests 
+                    storageSDKsTestBed.Tests.csproj
+                    ...
+                    ...
+                
+    ```
+2. Create the solution structure above and all its solution references  Examples:
+    ```
+    dotnet new sln -n storageAdapterClient -o .
+    ...
+    dotnet new classlib -n storageAdapterClient -o ./src
+    dotnet sln add ./src/storageAdapterClient.csproj
+    ...
+    dotnet new classlib -n storageAdapterClient.Tests -o ./test/storageAdapterClient.Tests
+    dotnet sln add ./test/storageAdapterClient.Tests/storageAdapterClient.Tests.csproj
+    ```
+ 
+3. To add the testbed as a submodule to your target solution, in your test folder, run the following:
+    ```
+    git submodule add https://github.com/becheng/storage-sdks-testbed.git
+    git submodule init
+    git submodule update
+    ```
+    A new `.gitmodules` file will be created in the root with the submodule info.  Example:
+    ```
+    [submodule "test/storage-sdks-testbed"]
+	path = test/storage-sdks-testbed
+	url = https://github.com/becheng/storage-sdks-testbed.git
+    ```
+
+4. Go to the root folder where your .sln is located and add the testbed project to your solution 
+    ```
+    dotnet sln add ./test/storageSDKsTestBed.Tests/storageSDKsTestBed.Tests.csproj
+    ```
 
